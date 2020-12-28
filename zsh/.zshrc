@@ -20,8 +20,8 @@ source $ZSH/oh-my-zsh.sh
 setxkbmap -option ctrl:nocaps
 xcape -e 'Control_L=Escape'
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/kallel/.sdkman"
-[[ -s "/home/kallel/.sdkman/bin/sdkman-init.sh" ]] && source "/home/kallel/.sdkman/bin/sdkman-init.sh"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
