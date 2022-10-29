@@ -12,8 +12,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-setxkbmap -option ctrl:nocaps
-xcape -e 'Control_L=Escape'
+#setxkbmap -option ctrl:nocaps
+#xcape -e 'Control_L=Escape'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
