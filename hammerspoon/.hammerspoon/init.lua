@@ -18,6 +18,7 @@ local windows = {
 -- than the one the windows are found by, this list
 -- will take precedence when opening the app.
 local windowLaunchNames = {
+    ['2'] = "Alacritty",
  	['5'] = "Visual Studio Code",
 }
 
