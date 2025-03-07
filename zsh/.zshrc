@@ -33,8 +33,8 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
 bindkey -e
 bindkey '^p' history-search-backward  
 bindkey '^n' history-search-forward  
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;5D' backward-word
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word
 bindkey -M emacs '\C-w' fzf-cd-widget
 bindkey -M vicmd '\C-w' fzf-cd-widget
 bindkey -M viins '\C-w' fzf-cd-widget
