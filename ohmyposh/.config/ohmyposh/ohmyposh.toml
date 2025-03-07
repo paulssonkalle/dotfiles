@@ -1,0 +1,100 @@
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+version = 3
+final_space = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'blue'
+    template = '{{ .Path }}'
+
+    [blocks.segments.properties]
+      style = 'full'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    foreground = 'p:overlay1'
+    background = 'transparent'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}{{ end }}{{ if gt .Ahead 0 }}{{ end }}</>'
+
+    [blocks.segments.properties]
+      branch_icon = ''
+      commit_icon = '@'
+      fetch_status = true
+
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'yellow'
+    template = '{{ .FormattedMs }}'
+
+    [blocks.segments.properties]
+      threshold = 5000
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground_templates = [
+      '{{if gt .Code 0}}red{{end}}',
+      '{{if eq .Code 0}}green{{end}}'
+    ]
+    background = 'transparent'
+    template = '❯'
+
+[transient_prompt]
+  background = 'transparent'
+  foreground_templates = [
+    '{{if gt .Code 0}}red{{end}}',
+    '{{if eq .Code 0}}green{{end}}'
+  ]
+  template = '❯ '
+
+[secondary_prompt]
+  background = 'transparent'
+  foreground = 'yellow'
+  template = '❯❯ '
+
+[palette]
+  rosewater = '#f5e0dc'
+  flamingo  = '#f2cdcd'
+  pink      = '#f5c2e7'
+  mauve     = '#cba6f7'
+  red       = '#f38ba8'
+  maroon    = '#eba0ac'
+  peach     = '#fab387'
+  yellow    = '#f9e2af'
+  green     = '#a6e3a1'
+  teal      = '#94e2d5'
+  sky       = '#89dceb'
+  sapphire  = '#74c7ec'
+  blue      = '#89b4fa'
+  lavender  = '#b4befe'
+  text      = '#cdd6f4'
+  subtext1  = '#bac2de'
+  subtext0  = '#a6adc8'
+  overlay2  = '#9399b2'
+  overlay1  = '#7f849c'
+  overlay0  = '#6c7086'
+  surface2  = '#585b70'
+  surface1  = '#45475a'
+  surface0  = '#313244'
+  base      = '#1e1e2e'
+  mantle    = '#181825'
+  crust     = '#11111b'
