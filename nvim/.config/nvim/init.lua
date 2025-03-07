@@ -100,4 +100,4 @@ vim.keymap.set('n', '<leader>td', builtin.diagnostics, { desc = 'Telescope diagn
 
 vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<cr>')
 
-vim.cmd([[colorscheme catppuccin]])
+vim.cmd([[colorscheme catppuccin-macchiato]])
