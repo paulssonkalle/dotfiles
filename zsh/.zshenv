@@ -14,3 +14,5 @@ export FZF_DEFAULT_OPTS=${CATPPUCCIN_FZF_MOCHA}
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --ignore-file $HOME/.fd_ignore . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --hidden --exclude .git --ignore-file $HOME/.fd_ignore -t d . $HOME"
+export PATH=$PATH:/home/kalle/.local/bin
+
