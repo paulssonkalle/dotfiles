@@ -3,9 +3,9 @@ local hyper = {"ctrl"}
 
 -- define your own shortcut list here
 local windows = {
-	['1'] = "IntelliJ IDEA Ultimate",
-	['2'] = "Alacritty",
-	['3'] = "Brave",
+	['1'] = "IntelliJ IDEA",
+	['2'] = "Ghostty",
+	['3'] = "Firefox",
 	['4'] = "TablePlus",
 	['5'] = "Code",
 	['6'] = "Obsidian",
@@ -18,8 +18,9 @@ local windows = {
 -- than the one the windows are found by, this list
 -- will take precedence when opening the app.
 local windowLaunchNames = {
-    ['2'] = "Alacritty",
- 	['5'] = "Visual Studio Code",
+	['1'] = "IntelliJ IDEA Ultimate",
+--  ['2'] = "Alacritty",
+  ['5'] = "Visual Studio Code",
 }
 
 local lastKey = ''

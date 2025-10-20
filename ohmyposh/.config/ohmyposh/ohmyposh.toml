@@ -18,6 +18,13 @@ final_space = true
       style = 'full'
 
   [[blocks.segments]]
+    type = "python"
+    style = "plain"
+    foreground = 'green'
+    background = 'transparent'
+    template = "  {{ .Full }} "
+
+  [[blocks.segments]]
     type = 'git'
     style = 'plain'
     foreground = 'p:overlay1'

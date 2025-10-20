@@ -14,6 +14,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light MichaelAquilina/zsh-you-should-use
 
 # Add snippets
 zinit snippet OMZP::git
@@ -31,10 +32,12 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
 
 # Keybindings
 bindkey -e
-bindkey '^p' history-search-backward  
-bindkey '^n' history-search-forward  
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 bindkey '^[[1;3C' forward-word
 bindkey '^[[1;3D' backward-word
+bindkey '^[[3~' delete-char
+bindkey '^[[1~' beginning-of-line
 bindkey -M emacs '\C-w' fzf-cd-widget
 bindkey -M vicmd '\C-w' fzf-cd-widget
 bindkey -M viins '\C-w' fzf-cd-widget
@@ -58,8 +61,10 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:*' fzf-flags --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796,fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6,marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796,selected-bg:#494d64,border:#363a4f,label:#cad3f5
-
+# Catppuccin macchiatto
+#zstyle ':fzf-tab:*' fzf-flags --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796,fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6,marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796,selected-bg:#494d64,border:#363a4f,label:#cad3f5
+# Catppuccin latte
+zstyle ':fzf-tab:*' fzf-flags --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39,fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78,marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39,selected-bg:#BCC0CC,border:#CCD0DA,label:#4C4F69
 # Aliases
 alias ls='ls --color'
 alias vi='nvim'
@@ -73,6 +78,14 @@ alias ktx='kubectx'
 source <(fzf --zsh)
 eval "$(zoxide init --cmd cd zsh)"
 
+# Setup volta
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# Add krew path
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# Setup sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 

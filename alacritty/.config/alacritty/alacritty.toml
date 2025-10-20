@@ -1,8 +1,8 @@
 general.import = [
   # uncomment the flavour you want below:
-  # "~/.config/alacritty/catppuccin/catppuccin-latte.toml"
+   "~/.config/alacritty/catppuccin/catppuccin-latte.toml"
   # "~/.config/alacritty/catppuccin/catppuccin-frappe.toml"
-   "~/.config/alacritty/catppuccin/catppuccin-macchiato.toml"
+  # "~/.config/alacritty/catppuccin/catppuccin-macchiato.toml"
   # "~/.config/alacritty/catppuccin/catppuccin-mocha.toml"
 ]
 
@@ -10,7 +10,7 @@ general.import = [
 TERM = "xterm-256color"
 
 [font]
-size = 15
+size = 14
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
@@ -29,6 +29,8 @@ save_to_clipboard = true
 
 [window]
 dynamic_padding = false
+dynamic_title = false
+title = "Alacritty"
 
 [window.padding]
 x = 5

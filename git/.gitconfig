@@ -1,5 +1,18 @@
+[user]
+ name = Kalle Paulsson
+ email = kalle.paulsson@skolon.com
+	signingkey = D7F25688921FE3F7
+[push]
+	autoSetupRemote = true
 [init]
 	defaultBranch = main
-[user]
-	email = paulsson.kalle@gmail.com
-	name = Kalle Paulsson
+[core]
+  excludeFile = $HOME/git/ignore
+	editor = nvim
+[alias]
+	wip = "!f() { \
+		git stash -u -m $1; \
+		}; f"
+
+[commit]
+	gpgsign = true
