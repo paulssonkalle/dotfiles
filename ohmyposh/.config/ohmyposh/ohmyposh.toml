@@ -20,7 +20,7 @@ final_space = true
   [[blocks.segments]]
     type = "python"
     style = "plain"
-    foreground = 'green'
+    foreground = 'yellow'
     background = 'transparent'
     template = "  {{ .Full }} "
 
