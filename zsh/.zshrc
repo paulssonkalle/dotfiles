@@ -15,18 +15,21 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light MichaelAquilina/zsh-you-should-use
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
 
 # Add snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sdk
 zinit snippet OMZP::tmux
+zinit ice lucid wait
+zinit snippet OMZP::fzf
 
 # Load completions
 autoload -U compinit && compinit
 
 # Replay all cached completions
 zinit cdreplay -q
-
 # Init oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
 
@@ -61,10 +64,8 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-# Catppuccin macchiatto
-#zstyle ':fzf-tab:*' fzf-flags --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796,fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6,marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796,selected-bg:#494d64,border:#363a4f,label:#cad3f5
-# Catppuccin latte
-zstyle ':fzf-tab:*' fzf-flags --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39,fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78,marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39,selected-bg:#BCC0CC,border:#CCD0DA,label:#4C4F69
+zstyle ':fzf-tab:*' fzf-flags --color=bg+:-1,bg:-1,spinner:2,hl:2,fg:-1,header:-1,info:1,pointer:-1,marker:2,fg+:-1,prompt:1,hl+:10,selected-bg:-1,border:1,label:2 --gutter ' '
+
 # Aliases
 alias ls='ls --color'
 alias vi='nvim'
@@ -73,9 +74,7 @@ alias k='kubectl'
 alias kns='kubens'
 alias ktx='kubectx'
 
-# Shell integrations
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source <(fzf --zsh)
+# zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
 # Setup volta

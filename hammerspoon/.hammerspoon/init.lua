@@ -20,7 +20,6 @@ local windows = {
 local windowLaunchNames = {
 	['1'] = "IntelliJ IDEA Ultimate",
 --  ['2'] = "Alacritty",
---  ['5'] = "Visual Studio Code",
 }
 
 local lastKey = ''
