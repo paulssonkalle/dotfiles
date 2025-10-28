@@ -22,7 +22,7 @@ final_space = true
     style = "plain"
     foreground = 'yellow'
     background = 'transparent'
-    template = "  {{ .Full }} "
+    template = "   {{ .Full }} "
 
   [[blocks.segments]]
     type = 'git'

@@ -50,8 +50,11 @@
 #
 
 theme = Catppuccin Latte
-font-family = JetBrains Mono
-font-family = Symbols Nerd Font Mono
+font-family = Zed Mono Extended
+font-style = Medium
+font-style-italic = Medium
+font-style-bold = Medium
+font-style-bold-italic = Medium
 font-size = 15
-
 window-padding-x = 5
+keybind = shift+enter=text:\x1b\r

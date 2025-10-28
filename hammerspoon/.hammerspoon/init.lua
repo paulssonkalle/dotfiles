@@ -7,7 +7,7 @@ local windows = {
 	['2'] = "Ghostty",
 	['3'] = "Firefox",
 	['4'] = "TablePlus",
-	['5'] = "Visual Studio Code",
+	['5'] = "Zed",
 	['6'] = "Obsidian",
 	['7'] = "Postman",
 	['8'] = "Calendar",
@@ -20,7 +20,7 @@ local windows = {
 local windowLaunchNames = {
 	['1'] = "IntelliJ IDEA Ultimate",
 --  ['2'] = "Alacritty",
-  ['5'] = "Visual Studio Code",
+--  ['5'] = "Visual Studio Code",
 }
 
 local lastKey = ''
