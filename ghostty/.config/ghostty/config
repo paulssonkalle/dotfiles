@@ -1,0 +1,8 @@
+theme = dark:Catppuccin Macchiato,light:Catppuccin Latte
+font-family = Lilex
+font-style = Medium
+font-style-italic = Medium
+font-style-bold = Medium
+font-style-bold-italic = Medium
+font-size = 11
+window-padding-x = 5

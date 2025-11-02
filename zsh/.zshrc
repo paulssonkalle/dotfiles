@@ -14,11 +14,15 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
 
 # Add snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sdk
 zinit snippet OMZP::tmux
+zinit ice lucid wait
+zinit snippet OMZP::fzf
 
 # Load completions
 autoload -U compinit && compinit
@@ -30,7 +34,7 @@ zinit cdreplay -q
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
 
 # Keybindings
-bindkey -e
+#bindkey -e
 bindkey '^p' history-search-backward  
 bindkey '^n' history-search-forward  
 bindkey '^[[1;5C' forward-word
@@ -58,7 +62,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:*' fzf-flags --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8,selected-bg:#45475a,border:#313244,label:#cdd6f4
+zstyle ':fzf-tab:*' fzf-flags --color=bg+:-1,bg:-1,spinner:2,hl:2,fg:-1,header:-1,info:1,pointer:-1,marker:2,fg+:-1,prompt:1,hl+:10,selected-bg:-1,border:1,label:2 --gutter ' '
 
 # Aliases
 alias ls='ls --color'
@@ -68,11 +72,8 @@ alias k='kubectl'
 alias kns='kubens'
 alias ktx='kubectx'
 
-# Shell integrations
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source <(fzf --zsh)
+# zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 
