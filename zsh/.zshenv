@@ -1,31 +1,29 @@
+skip_global_compinit=1
+
 fpath=($HOME/.zsh/completions $fpath)
-path=(/opt/nvim-linux-x86_64/bin $path)
+path=(/home/kalle/.local/bin $path)
 
 export EDITOR="vim"
 export VISUAL="vim"
-CATPPUCCIN_FZF_MOCHA=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---color=selected-bg:#45475a \
---color=border:#313244,label:#cdd6f4"
-
-export FZF_DEFAULT_OPTS=${CATPPUCCIN_FZF_MOCHA}
+export FZF_DEFAULT_OPTS=" \
+--layout reverse \
+--border \
+--color=fg:-1 \
+--color=fg+:-1 \
+--color=bg:-1 \
+--color=bg+:-1 \
+--color=pointer:-1 \
+--color=header:-1 \
+--color=border:-1 \
+--color=hl:2 \
+--color=hl+:10 \
+--color=info:1 \
+--color=prompt:1 \
+--color=marker:2 \
+--color=spinner:2 \
+--color=scrollbar:dim \
+--color=separator:1 \
+--gutter ' ' "
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --ignore-file $HOME/.fd_ignore . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --hidden --exclude .git --ignore-file $HOME/.fd_ignore -t d . $HOME"
-export PATH=$PATH:/home/kalle/.local/bin
-
-# Setup volta
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
-# Setup sdkman
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
-

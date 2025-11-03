@@ -3,40 +3,18 @@
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-
-source "${ZINIT_HOME}/zinit.zsh"
-
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-
-# Add snippets
-zinit snippet OMZP::git
-zinit snippet OMZP::sdk
-zinit snippet OMZP::tmux
-zinit ice lucid wait
-zinit snippet OMZP::fzf
-
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 # Load completions
 autoload -U compinit && compinit
-
-# Replay all cached completions
-zinit cdreplay -q
 
 # Init oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
 
 # Keybindings
-#bindkey -e
-bindkey '^p' history-search-backward  
-bindkey '^n' history-search-forward  
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey -M emacs '\C-w' fzf-cd-widget
@@ -72,8 +50,10 @@ alias k='kubectl'
 alias kns='kubens'
 alias ktx='kubectx'
 
+source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(~/.local/bin/mise activate zsh)"
 
-
-
+source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
