@@ -90,7 +90,7 @@ require("lazy").setup({
         }
     },
     { colorscheme = { "catppuccin" } },
-    checker = { enabled = true },
+    checker = { enabled = false, notify = false },
 })
 
 require("catppuccin").setup({
