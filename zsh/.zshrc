@@ -3,33 +3,17 @@
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-
-source "${ZINIT_HOME}/zinit.zsh"
-
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-zinit light MichaelAquilina/zsh-you-should-use
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-
-# Add snippets
-zinit snippet OMZP::git
-zinit snippet OMZP::sdk
-zinit snippet OMZP::tmux
-zinit ice lucid wait
-zinit snippet OMZP::fzf
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # Load completions
-autoload -U compinit && compinit
+autoload -Uz compinit
 
-# Replay all cached completions
-zinit cdreplay -q
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
 # Init oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
 
@@ -74,21 +58,23 @@ alias k='kubectl'
 alias kns='kubens'
 alias ktx='kubectx'
 
+source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
 # Setup volta
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+#export VOLTA_HOME="$HOME/.volta"
+#export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Add krew path
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+#export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Setup sdkman
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+#export SDKMAN_DIR="$HOME/.sdkman"
+#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init - zsh)"
+#eval "$(pyenv virtualenv-init -)"

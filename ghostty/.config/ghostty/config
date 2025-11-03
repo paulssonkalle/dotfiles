@@ -5,6 +5,6 @@ font-style-italic = Medium
 font-style-bold = Medium
 font-style-bold-italic = Medium
 font-size = 14
+cursor-style = bar
 window-padding-x = 5
 keybind = shift+enter=text:\x1b\
-
