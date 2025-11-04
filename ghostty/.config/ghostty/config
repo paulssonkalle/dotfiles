@@ -6,4 +6,35 @@ font-style-bold = Medium
 font-style-bold-italic = Medium
 font-size = 11
 cursor-style = bar
-window-padding-x = 5
+cursor-style-blink = false
+#window-padding-x = 5
+#window-padding-y = 5
+keybind = shift+enter=text:\x1b\r
+
+# Shell integration
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+
+# Clipboard settings
+clipboard-read = allow
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+
+# Mouse behavior
+mouse-hide-while-typing = true
+
+# Scrollback
+scrollback-limit = 10000
+
+# Window behavior
+confirm-close-surface = true
+window-vsync = true
+window-theme = auto
+#gtk-titlebar = false
+window-decoration = true
+
+# Links
+link-url = true
+
+# Auto-update
+auto-update = check

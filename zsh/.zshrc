@@ -5,8 +5,17 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-# Load completions
-autoload -U compinit && compinit
+
+# Load fzf-tab before compinit
+source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+
+# Load completions with caching (runs full compinit once per day)
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 # Init oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
@@ -22,7 +31,7 @@ bindkey -M vicmd '\C-w' fzf-cd-widget
 bindkey -M viins '\C-w' fzf-cd-widget
 
 # History
-HISTSIZE=5000
+HISTSIZE=50000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
@@ -50,10 +59,8 @@ alias k='kubectl'
 alias kns='kubens'
 alias ktx='kubectx'
 
-source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
-
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(~/.local/bin/mise activate zsh)"
 
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+eval "$(~/.local/bin/mise activate zsh)"

@@ -1,10 +1,10 @@
 skip_global_compinit=1
 
 fpath=($HOME/.zsh/completions $fpath)
-path=(/home/kalle/.local/bin $path)
+path=(~/.local/bin $path)
 
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export FZF_DEFAULT_OPTS=" \
 --layout reverse \
 --border \
