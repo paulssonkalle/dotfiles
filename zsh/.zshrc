@@ -17,6 +17,10 @@ else
   compinit -C
 fi
 
+# Sane jump by word
+autoload -U select-word-style
+select-word-style bash
+
 # Init oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
 
