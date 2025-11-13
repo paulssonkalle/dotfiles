@@ -60,21 +60,9 @@ alias ktx='kubectx'
 
 source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
 
-# Setup volta
-#export VOLTA_HOME="$HOME/.volta"
-#export PATH="$VOLTA_HOME/bin:$PATH"
+eval "$(mise activate zsh)"
 
-# Add krew path
-#export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-# Setup sdkman
-#export SDKMAN_DIR="$HOME/.sdkman"
-#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-#export PYENV_ROOT="$HOME/.pyenv"
-#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init - zsh)"
-#eval "$(pyenv virtualenv-init -)"
