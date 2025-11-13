@@ -1,5 +1,10 @@
 fpath=($HOME/.zsh/completions $fpath)
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Remove duplicates from PATH
+typeset -U PATH
+
 export EDITOR="nvim"
 export VISUAL="nvim"
 export KUBECONFIG="$HOME/.kube/backup_config:$HOME/.kube/staging_config:$HOME/.kube/production_config"
@@ -26,7 +31,5 @@ export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --ignore-file $HOME/.fd_i
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --hidden --exclude .git --ignore-file $HOME/.fd_ignore -t d . $HOME"
 
-export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
-export PATH="$PATH:$HOME/go/bin"
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
+export PATH="$HOME/go/bin:$PATH"

@@ -8,11 +8,11 @@ source <(fzf --zsh)
 
 # Load completions
 autoload -Uz compinit
-
-for dump in ~/.zcompdump(N.mh+24); do
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
   compinit
-done
-compinit -C
+else
+  compinit -C
+fi
 
 # Init oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
@@ -26,8 +26,6 @@ bindkey '^[[1;3D' backward-word
 bindkey '^[[3~' delete-char
 bindkey '^[[1~' beginning-of-line
 bindkey -M emacs '\C-w' fzf-cd-widget
-bindkey -M vicmd '\C-w' fzf-cd-widget
-bindkey -M viins '\C-w' fzf-cd-widget
 
 # Sane jump by word
 autoload -U select-word-style
@@ -50,12 +48,12 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -G $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls -G $realpath'
 zstyle ':fzf-tab:*' fzf-flags --color=bg+:-1,bg:-1,spinner:2,hl:2,fg:-1,header:-1,info:1,pointer:-1,marker:2,fg+:-1,prompt:1,hl+:2,selected-bg:-1,border:1,label:2 --gutter ' '
 
 # Aliases
-alias ls='ls --color'
+alias ls='ls -G'
 alias vi='nvim'
 alias vim='nvim'
 alias k='kubectl'
@@ -63,12 +61,7 @@ alias kns='kubens'
 alias ktx='kubectx'
 
 source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# zoxide
 eval "$(zoxide init --cmd cd zsh)"
-
 eval "$(mise activate zsh)"
-
-# Remove duplicates from PATH
-typeset -U PATH
