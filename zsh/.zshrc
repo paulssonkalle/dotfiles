@@ -29,6 +29,10 @@ bindkey -M emacs '\C-w' fzf-cd-widget
 bindkey -M vicmd '\C-w' fzf-cd-widget
 bindkey -M viins '\C-w' fzf-cd-widget
 
+# Sane jump by word
+autoload -U select-word-style
+select-word-style bash
+
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
