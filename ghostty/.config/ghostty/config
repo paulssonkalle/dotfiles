@@ -1,10 +1,24 @@
-theme = dark:Catppuccin Macchiato,light:Catppuccin Latte
+theme = dark:everforest-dark-medium,light:everforest-light-hard
 font-family = Zed Mono Extended
 font-style = Medium
 font-style-italic = Medium
 font-style-bold = Medium
 font-style-bold-italic = Medium
 font-size = 14
-cursor-style = bar
+adjust-cursor-thickness = 2
 window-padding-x = 5
-keybind = shift+enter=text:\x1b\
+keybind = shift+enter=text:\x1b\r
+keybind = cmd+k=text:\x01\x54
+keybind = cmd+t=text:\x01\x63
+keybind = cmd+w=text:\x01\x78
+
+
+keybind = cmd+digit_1=text:\x01\x31
+keybind = cmd+digit_2=text:\x01\x32
+keybind = cmd+digit_3=text:\x01\x33
+keybind = cmd+digit_4=text:\x01\x34
+keybind = cmd+digit_5=text:\x01\x35
+keybind = cmd+digit_6=text:\x01\x36
+keybind = cmd+digit_7=text:\x01\x37
+keybind = cmd+digit_8=text:\x01\x38
+keybind = cmd+digit_9=text:\x01\x39

@@ -6,6 +6,9 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
+# source lux
+source $HOME/dev/zsh-lux/zsh-lux.plugin.zsh
+
 # Load completions
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
@@ -59,9 +62,22 @@ alias vim='nvim'
 alias k='kubectl'
 alias kns='kubens'
 alias ktx='kubectx'
+alias printpath="echo $PATH | tr ':' '\n'"
 
 source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(mise activate zsh)"
+
+lg() {
+  if macos_is_dark; then
+      command lazygit --use-config-file="/Users/kalle/.config/lazygit/config.yml,/Users/kalle/.config/lazygit/everforest-dark.yml"
+  else
+      command lazygit --use-config-file="/Users/kalle/.config/lazygit/config.yml,/Users/kalle/.config/lazygit/everforest-light.yml"
+  fi
+}
+
+if [ -z "$TMUX" ]; then
+    tmux attach || exec tmux new-session
+fi

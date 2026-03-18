@@ -16,3 +16,13 @@
 
 [commit]
 	gpgsign = true
+
+[merge]
+  tool = intellij
+[mergetool "intellij"]
+  cmd = '/Users/kalle/Library/Application Support/JetBrains/Toolbox/scripts/idea' merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+  trustExitCode = true
+[mergetool]
+  keepBackup = false
+
+

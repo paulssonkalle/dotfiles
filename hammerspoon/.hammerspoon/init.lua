@@ -9,7 +9,7 @@ local windows = {
 	['4'] = "TablePlus",
 	['5'] = "Zed",
 	['6'] = "Obsidian",
-	['7'] = "Postman",
+	['7'] = "Yaak",
 	['8'] = "Calendar",
 	['9'] = "Spotify",
 }
@@ -18,8 +18,7 @@ local windows = {
 -- than the one the windows are found by, this list
 -- will take precedence when opening the app.
 local windowLaunchNames = {
-	['1'] = "IntelliJ IDEA Ultimate",
---  ['2'] = "Alacritty",
+	['9'] = "Spotify",
 }
 
 local lastKey = ''

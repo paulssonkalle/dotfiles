@@ -34,7 +34,14 @@ vim.opt.showmode = false
 
 require("lazy").setup({
     spec = {
-        { "catppuccin/nvim",           name = "catppuccin",                              priority = 1000 },
+--        { "catppuccin/nvim",           name = "catppuccin",                              priority = 1000 },
+      { "neanias/everforest-nvim", version = false, lazy = false, priority = 1000, config = function()
+        require("everforest").setup({
+          background = "hard",
+          italics = true,
+        })
+    end,
+    },
         { "nvim-lualine/lualine.nvim", dependencies = { 'nvim-tree/nvim-web-devicons' }, opts = {} },
         {
             "nvim-treesitter/nvim-treesitter",
@@ -89,16 +96,15 @@ require("lazy").setup({
             end
         }
     },
-    { colorscheme = { "catppuccin" } },
     checker = { enabled = false, notify = false },
 })
 
-require("catppuccin").setup({
-    background = {
-        light = "latte",
-        dark = "macchiato"
-    }
-})
+--require("catppuccin").setup({
+--    background = {
+--        light = "latte",
+--        dark = "frappe"
+--    }
+--})
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
@@ -107,4 +113,4 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>td', builtin.diagnostics, { desc = 'Telescope diagnostics' })
 vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<cr>')
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "everforest"

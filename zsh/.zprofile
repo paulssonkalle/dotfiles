@@ -7,7 +7,7 @@ typeset -U PATH
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-export KUBECONFIG="$HOME/.kube/backup_config:$HOME/.kube/staging_config:$HOME/.kube/production_config"
+export KUBECONFIG="$HOME/.kube/backup_config:$HOME/.kube/staging_config:$HOME/.kube/production_config:$HOME/.kube/kind_config"
 export FZF_DEFAULT_OPTS=" \
 --layout reverse \
 --border \
@@ -33,3 +33,7 @@ export FZF_ALT_C_COMMAND="fd --hidden --exclude .git --ignore-file $HOME/.fd_ign
 
 export PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/share/opencode/bin/jdtls/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
