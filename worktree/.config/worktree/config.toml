@@ -1,0 +1,4 @@
+base_path = '~/c'
+editor = 'idea'
+cleanup_threshold_days = 30
+zoxide = true

@@ -7,22 +7,8 @@
 [init]
 	defaultBranch = main
 [core]
-  excludeFile = $HOME/git/ignore
 	editor = nvim
-[alias]
-	wip = "!f() { \
-		git stash -u -m $1; \
-		}; f"
-
+	excludesfile = /Users/kalle/git/ignore
 [commit]
 	gpgsign = true
-
-[merge]
-  tool = intellij
-[mergetool "intellij"]
-  cmd = '/Users/kalle/Library/Application Support/JetBrains/Toolbox/scripts/idea' merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
-  trustExitCode = true
-[mergetool]
-  keepBackup = false
-
 

@@ -1,0 +1,14 @@
+[tools]
+go = "1.26.0"
+java = "temurin-25.0.2+10.0.LTS"
+kubectl = "1.34.4"
+kubectx = "latest"
+maven = "3.9.12"
+node = "24.13.1"
+python = "3.14.3"
+spring-boot = "4.0.2"
+uv = "0.10.2"
+yarn = "4.12.0"
+
+[settings]
+python.uv_venv_auto = true

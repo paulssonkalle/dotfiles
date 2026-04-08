@@ -1,0 +1,54 @@
+[[session]]
+name = "zshrc"
+path = "/Users/kalle/.zshrc"
+startup_command = "zed ."
+
+[[session]]
+name = "zprofile"
+path = "/Users/kalle/.zprofile"
+startup_command = "zed ."
+
+[[session]]
+name = "tmux conf"
+path = "/Users/kalle/.tmux.conf"
+startup_command = "zed .tmux.conf"
+
+[[session]]
+name = "hammerspoon conf"
+path = "/Users/kalle/.hammerspoon"
+startup_command = "zed ."
+
+[[session]]
+name = "ghostty conf"
+path = "/Users/kalle/.config/ghostty"
+startup_command = "zed ."
+
+[[session]]
+name = "mise conf"
+path = "/Users/kalle/.config/mise"
+startup_command = "zed ."
+
+[[session]]
+name = "nvim conf"
+path = "/Users/kalle/.config/nvim"
+startup_command = "zed ."
+
+[[session]]
+name = "ohmyposh conf"
+path = "/Users/kalle/.config/ohmyposh"
+startup_command = "zed ."
+
+[[session]]
+name = "opencode conf"
+path = "/Users/kalle/.config/opencode"
+startup_command = "zed ."
+
+[[session]]
+name = "sesh conf"
+path = "/Users/kalle/.config/sesh"
+startup_command = "zed ."
+
+[[session]]
+name = "worktree conf"
+path = "/Users/kalle/.config/worktree"
+startup_command = "zed ."

@@ -1,18 +1,19 @@
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
 version = 3
 final_space = true
+
 [palette]
   foreground        = '#D3C6AA'
-  red               = '#E67E80'
-  yellow            = '#DBBC7F'
-  green             = '#A7C080'
-  blue              = '#7FBBB3'
-  purple            = '#D699B6'
-  aqua              = '#83C092'
-  orange            = '#E69875'
-  statusline1       = '#A7C080'
-  statusline2       = '#D3C6AA'
-  statusline3       = '#E67E80'
+  red               = '#F85552'
+  yellow            = '#DFA000'
+  green             = '#8DA101'
+  blue              = '#3A94C5'
+  purple            = '#DF69BA'
+  aqua              = '#35A77C'
+  orange            = '#F57D26'
+  statusline1       = '#93B259'
+  statusline2       = '#708089'
+  statusline3       = '#E66868'
   grey0             = '#7A8478'
   grey1             = '#859289'
   grey2             = '#9DA9A0'
@@ -30,79 +31,87 @@ final_space = true
   background-purple = '#4A444E'
   background-visual = '#543A48'
 
-
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
+    type = 'prompt'
+    alignment = 'left'
 
-  [[blocks.segments]]
-    type = 'path'
-    style = 'plain'
-    background = 'transparent'
-    foreground = 'p:blue'
-    template = '{{ .Path }}'
+    [[blocks.segments]]
+        type = 'path'
+        style = 'plain'
+        background = 'transparent'
+        foreground = 'p:blue'
+        template = '{{ .Path }}'
 
     [blocks.segments.properties]
-      style = 'full'
+        style = 'full'
 
-  [[blocks.segments]]
-    type = "python"
-    style = "plain"
-    foreground = 'p:yellow'
-    background = 'transparent'
-    template = "   {{ .Full }} "
+    [[blocks.segments]]
+        type = "python"
+        style = "plain"
+        foreground = 'p:yellow'
+        background = 'transparent'
+        template = "   {{ .Full }} "
 
-  [[blocks.segments]]
-    type = 'git'
-    style = 'plain'
-    foreground = 'p:grey0'
-    background = 'transparent'
-    template = ' {{ .HEAD }}<red>{{ if or (.Working.Changed) (.Staging.Changed) }} *{{ end }}</><green>{{ if gt .Behind 0 }} {{ end }}</><red>{{ if gt .Ahead 0 }} {{ end }}</>'
+    [[blocks.segments]]
+        type = 'git'
+        style = 'plain'
+        foreground = 'p:grey0'
+        background = 'transparent'
+        template = ' <p:red></><p:grey0> {{ .HEAD }}</><red>{{ if or (.Working.Changed) (.Staging.Changed) }} *{{ end }}</><green>{{ if gt .Behind 0 }} {{ end }}</><red>{{ if gt .Ahead 0 }} {{ end }}</>'
 
-    [blocks.segments.properties]
-      branch_icon = ''
-      commit_icon = '@'
-      fetch_status = true
-
-[[blocks]]
-  type = 'rprompt'
-  overflow = 'hidden'
-
-  [[blocks.segments]]
-    type = 'executiontime'
-    style = 'plain'
-    background = 'transparent'
-    foreground = 'yellow'
-    template = '{{ .FormattedMs }}'
-
-    [blocks.segments.properties]
-      threshold = 5000
+        [blocks.segments.properties]
+            branch_icon = ''
+            commit_icon = '@'
+            fetch_status = true
 
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
+    type = 'prompt'
+    overflow = 'hidden'
+    alignment = 'right'
 
-  [[blocks.segments]]
-    type = 'text'
-    style = 'plain'
-    foreground_templates = [
-      '{{if gt .Code 0}}red{{end}}',
-      '{{if eq .Code 0}}green{{end}}'
-    ]
-    background = 'transparent'
-    template = '❯'
+    [[blocks.segments]]
+        type = 'kubectl'
+        style = 'plain'
+        template = " <blue>󱃾 </><red>{{.Context}}</>{{if .Namespace}}<p:grey0>::</><blue>{{.Namespace}}{{end}}</> "
+
+[[blocks]]
+    type = 'rprompt'
+    overflow = 'hidden'
+
+    [[blocks.segments]]
+        type = 'executiontime'
+        style = 'plain'
+        background = 'transparent'
+        foreground = 'yellow'
+        template = '{{ .FormattedMs }} '
+
+        [blocks.segments.properties]
+        threshold = 2
+
+[[blocks]]
+    type = 'prompt'
+    alignment = 'left'
+    newline = true
+
+    [[blocks.segments]]
+        type = 'text'
+        style = 'plain'
+        foreground_templates = [
+            '{{if gt .Code 0}}red{{end}}',
+            '{{if eq .Code 0}}green{{end}}'
+        ]
+        background = 'transparent'
+        template = '❯'
 
 [transient_prompt]
-  background = 'transparent'
-  foreground_templates = [
-    '{{if gt .Code 0}}red{{end}}',
-    '{{if eq .Code 0}}green{{end}}'
-  ]
-  template = '❯ '
+    background = 'transparent'
+    foreground_templates = [
+        '{{if gt .Code 0}}red{{end}}',
+        '{{if eq .Code 0}}green{{end}}'
+    ]
+    template = '❯ '
 
 [secondary_prompt]
-  background = 'transparent'
-  foreground = 'yellow'
-  template = '❯❯ '
+    background = 'transparent'
+    foreground = 'yellow'
+    template = '❯❯ '

@@ -1,0 +1,7 @@
+gui:
+  theme:
+    selectedLineBgColor:
+      - '#272e33'
+
+  authorColors:
+    '*': '#d699b6'

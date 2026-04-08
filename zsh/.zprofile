@@ -7,7 +7,7 @@ typeset -U PATH
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-export KUBECONFIG="$HOME/.kube/backup_config:$HOME/.kube/staging_config:$HOME/.kube/production_config:$HOME/.kube/kind_config"
+export KUBECONFIG="$HOME/.kube/backup_config:$HOME/.kube/staging_config:$HOME/.kube/dev_config:$HOME/.kube/ai_config"
 export FZF_DEFAULT_OPTS=" \
 --layout reverse \
 --border \
@@ -37,3 +37,4 @@ export PATH="$HOME/.local/share/opencode/bin/jdtls/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export OPENCODE_EXPERIMENTAL_MARKDOWN=0
