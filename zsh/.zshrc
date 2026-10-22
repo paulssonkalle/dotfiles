@@ -3,8 +3,26 @@
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
+ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+
+# Source the output of an init command, cached until the binary changes
+# Usage: _cached_eval <name> <cmd> [args...]
+_cached_eval() {
+  local cache=$ZSH_CACHE_DIR/$1.zsh; shift
+  local bin=${commands[$1]}
+  [[ -z $bin ]] && return
+  if [[ ! -s $cache || $bin -nt $cache ]]; then
+    mkdir -p ${cache:h}
+    "$@" >| $cache
+  fi
+  source $cache
+}
+
+# mise first so tools it manages are on PATH for everything below
+_cached_eval mise mise activate zsh
+
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+_cached_eval fzf fzf --zsh
 
 # Load completions (full rebuild at most once a day)
 autoload -Uz compinit
@@ -62,8 +80,7 @@ alias printpath="echo $PATH | tr ':' '\n'"
 source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(mise activate zsh)"
+_cached_eval zoxide zoxide init --cmd cd zsh
 
 lg() {
   local theme=light
