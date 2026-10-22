@@ -106,6 +106,16 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 _cached_eval zoxide zoxide init --cmd cd zsh
 
+# Update plugins in the background once a week
+() {
+  local stamp=$ZSH_CACHE_DIR/plugins-updated
+  local script=$HOME/.dotfiles/scripts/update-plugins.sh
+  local fresh=($stamp(N.md-7))
+  (( $#fresh )) || [[ ! -x $script ]] && return
+  mkdir -p $ZSH_CACHE_DIR && touch $stamp
+  $script >| $ZSH_CACHE_DIR/plugins-update.log 2>&1 &!
+}
+
 lg() {
   local theme=light
   [[ "$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null)" == "'prefer-dark'" ]] && theme=dark
