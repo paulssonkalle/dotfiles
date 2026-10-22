@@ -8,6 +8,7 @@ shell=org.gnome.shell.keybindings
 media=org.gnome.settings-daemon.plugins.media-keys
 
 # Free Super+1-9 so Ghostty can use them for tmux windows
+gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false
 gsettings set $shell switch-to-application-1 "[]"
 gsettings set $shell switch-to-application-2 "[]"
 gsettings set $shell switch-to-application-3 "[]"
