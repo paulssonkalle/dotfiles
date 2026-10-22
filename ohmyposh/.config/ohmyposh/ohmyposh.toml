@@ -2,106 +2,116 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 version = 3
 final_space = true
 
-[[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
-
-  [[blocks.segments]]
-    type = 'path'
-    style = 'plain'
-    background = 'transparent'
-    foreground = 'blue'
-    template = '{{ .Path }}'
-
-    [blocks.segments.properties]
-      style = 'full'
-
-  [[blocks.segments]]
-    type = "python"
-    style = "plain"
-    foreground = 'yellow'
-    background = 'transparent'
-    template = "   {{ .Full }} "
-
-  [[blocks.segments]]
-    type = 'git'
-    style = 'plain'
-    foreground = 'p:overlay1'
-    background = 'transparent'
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <green>{{ if gt .Behind 0 }}{{ end }}</><red>{{ if gt .Ahead 0 }}{{ end }}</>'
-
-    [blocks.segments.properties]
-      branch_icon = ''
-      commit_icon = '@'
-      fetch_status = true
+[palette]
+  foreground        = '#D3C6AA'
+  red               = '#F85552'
+  yellow            = '#DFA000'
+  green             = '#8DA101'
+  blue              = '#3A94C5'
+  purple            = '#DF69BA'
+  aqua              = '#35A77C'
+  orange            = '#F57D26'
+  statusline1       = '#93B259'
+  statusline2       = '#708089'
+  statusline3       = '#E66868'
+  grey0             = '#7A8478'
+  grey1             = '#859289'
+  grey2             = '#9DA9A0'
+  background-dim    = '#232A2E'
+  background0       = '#2D353B'
+  background1       = '#343F44'
+  background2       = '#3D484D'
+  background3       = '#475258'
+  background4       = '#4F585E'
+  background5       = '#56635F'
+  background-red    = '#514045'
+  background-yellow = '#4D4C43'
+  background-green  = '#425047'
+  background-blue   = '#3A515D'
+  background-purple = '#4A444E'
+  background-visual = '#543A48'
 
 [[blocks]]
-  type = 'rprompt'
-  overflow = 'hidden'
+    type = 'prompt'
+    alignment = 'left'
 
-  [[blocks.segments]]
-    type = 'executiontime'
-    style = 'plain'
-    background = 'transparent'
-    foreground = 'yellow'
-    template = '{{ .FormattedMs }}'
+    [[blocks.segments]]
+        type = 'path'
+        style = 'plain'
+        background = 'transparent'
+        foreground = 'p:blue'
+        template = '{{ .Path }}'
 
     [blocks.segments.properties]
-      threshold = 5000
+        style = 'full'
+
+    [[blocks.segments]]
+        type = "python"
+        style = "plain"
+        foreground = 'p:yellow'
+        background = 'transparent'
+        template = "   {{ .Full }} "
+
+    [[blocks.segments]]
+        type = 'git'
+        style = 'plain'
+        foreground = 'p:grey0'
+        background = 'transparent'
+        template = ' <p:red></><p:grey0> {{ .HEAD }}</><red>{{ if or (.Working.Changed) (.Staging.Changed) }} *{{ end }}</><green>{{ if gt .Behind 0 }} {{ end }}</><red>{{ if gt .Ahead 0 }} {{ end }}</>'
+
+        [blocks.segments.properties]
+            branch_icon = ''
+            commit_icon = '@'
+            fetch_status = true
 
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
+    type = 'prompt'
+    overflow = 'hidden'
+    alignment = 'right'
 
-  [[blocks.segments]]
-    type = 'text'
-    style = 'plain'
-    foreground_templates = [
-      '{{if gt .Code 0}}red{{end}}',
-      '{{if eq .Code 0}}green{{end}}'
-    ]
-    background = 'transparent'
-    template = '❯'
+    [[blocks.segments]]
+        type = 'kubectl'
+        style = 'plain'
+        template = " <blue>󱃾 </><red>{{.Context}}</>{{if .Namespace}}<p:grey0>::</><blue>{{.Namespace}}{{end}}</> "
+
+[[blocks]]
+    type = 'rprompt'
+    overflow = 'hidden'
+
+    [[blocks.segments]]
+        type = 'executiontime'
+        style = 'plain'
+        background = 'transparent'
+        foreground = 'yellow'
+        template = '{{ .FormattedMs }} '
+
+        [blocks.segments.properties]
+        threshold = 2
+
+[[blocks]]
+    type = 'prompt'
+    alignment = 'left'
+    newline = true
+
+    [[blocks.segments]]
+        type = 'text'
+        style = 'plain'
+        foreground_templates = [
+            '{{if gt .Code 0}}red{{end}}',
+            '{{if eq .Code 0}}green{{end}}'
+        ]
+        background = 'transparent'
+        template = '❯'
 
 [transient_prompt]
-  background = 'transparent'
-  foreground_templates = [
-    '{{if gt .Code 0}}red{{end}}',
-    '{{if eq .Code 0}}green{{end}}'
-  ]
-  template = '❯ '
+    background = 'transparent'
+    foreground_templates = [
+        '{{if gt .Code 0}}red{{end}}',
+        '{{if eq .Code 0}}green{{end}}'
+    ]
+    template = '❯ '
 
 [secondary_prompt]
-  background = 'transparent'
-  foreground = 'yellow'
-  template = '❯❯ '
-
-[palette]
-  rosewater = '#f5e0dc'
-  flamingo  = '#f2cdcd'
-  pink      = '#f5c2e7'
-  mauve     = '#cba6f7'
-  red       = '#f38ba8'
-  maroon    = '#eba0ac'
-  peach     = '#fab387'
-  yellow    = '#f9e2af'
-  green     = '#a6e3a1'
-  teal      = '#94e2d5'
-  sky       = '#89dceb'
-  sapphire  = '#74c7ec'
-  blue      = '#89b4fa'
-  lavender  = '#b4befe'
-  text      = '#cdd6f4'
-  subtext1  = '#bac2de'
-  subtext0  = '#a6adc8'
-  overlay2  = '#9399b2'
-  overlay1  = '#7f849c'
-  overlay0  = '#6c7086'
-  surface2  = '#585b70'
-  surface1  = '#45475a'
-  surface0  = '#313244'
-  base      = '#1e1e2e'
-  mantle    = '#181825'
-  crust     = '#11111b'
+    background = 'transparent'
+    foreground = 'yellow'
+    template = '❯❯ '
