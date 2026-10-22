@@ -39,7 +39,7 @@ final_space = true
         type = 'path'
         style = 'plain'
         background = 'transparent'
-        foreground = 'p:blue'
+        foreground = 'blue'
         template = '{{ .Path }}'
 
     [blocks.segments.properties]
@@ -48,16 +48,16 @@ final_space = true
     [[blocks.segments]]
         type = "python"
         style = "plain"
-        foreground = 'p:yellow'
+        foreground = 'yellow'
         background = 'transparent'
         template = "   {{ .Full }} "
 
     [[blocks.segments]]
         type = 'git'
         style = 'plain'
-        foreground = 'p:grey0'
+        foreground = 'darkGray'
         background = 'transparent'
-        template = ' <p:red></><p:grey0> {{ .HEAD }}</><red>{{ if or (.Working.Changed) (.Staging.Changed) }} *{{ end }}</><green>{{ if gt .Behind 0 }} {{ end }}</><red>{{ if gt .Ahead 0 }} {{ end }}</>'
+        template = ' <red></><darkGray> {{ .HEAD }}</><red>{{ if or (.Working.Changed) (.Staging.Changed) }} *{{ end }}</><green>{{ if gt .Behind 0 }} {{ end }}</><red>{{ if gt .Ahead 0 }} {{ end }}</>'
 
         [blocks.segments.properties]
             branch_icon = ''
@@ -72,7 +72,7 @@ final_space = true
     [[blocks.segments]]
         type = 'kubectl'
         style = 'plain'
-        template = " <blue>󱃾 </><red>{{.Context}}</>{{if .Namespace}}<p:grey0>::</><blue>{{.Namespace}}{{end}}</> "
+        template = " <blue>󱃾 </><red>{{.Context}}</>{{if .Namespace}}<darkGray>::</><blue>{{.Namespace}}{{end}}</> "
 
 [[blocks]]
     type = 'rprompt'
