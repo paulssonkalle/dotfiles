@@ -3,3 +3,7 @@
 [user]
 	email = paulsson.kalle@gmail.com
 	name = Kalle Paulsson
+[push]
+	autoSetupRemote = true
+[core]
+	editor = nvim
