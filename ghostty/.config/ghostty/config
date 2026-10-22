@@ -10,14 +10,14 @@ keybind = super+t=text:\x01\x63
 keybind = super+w=text:\x01\x78
 
 
-keybind = ctrl+digit_1=text:\x01\x31
-keybind = ctrl+digit_2=text:\x01\x32
-keybind = ctrl+digit_3=text:\x01\x33
-keybind = ctrl+digit_4=text:\x01\x34
-keybind = ctrl+digit_5=text:\x01\x35
-keybind = ctrl+digit_6=text:\x01\x36
-keybind = ctrl+digit_7=text:\x01\x37
-keybind = ctrl+digit_8=text:\x01\x38
-keybind = ctrl+digit_9=text:\x01\x39
+keybind = super+digit_1=text:\x01\x31
+keybind = super+digit_2=text:\x01\x32
+keybind = super+digit_3=text:\x01\x33
+keybind = super+digit_4=text:\x01\x34
+keybind = super+digit_5=text:\x01\x35
+keybind = super+digit_6=text:\x01\x36
+keybind = super+digit_7=text:\x01\x37
+keybind = super+digit_8=text:\x01\x38
+keybind = super+digit_9=text:\x01\x39
 
 keybind = super+l=text:\x01\x41
