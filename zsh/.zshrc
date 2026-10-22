@@ -48,7 +48,7 @@ autoload -U select-word-style
 select-word-style bash
 
 # History
-HISTSIZE=5000
+HISTSIZE=100000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
