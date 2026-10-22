@@ -27,7 +27,8 @@ gsettings set $wm toggle-maximized "['<Super><Control>m']"
 gsettings set $wm move-to-monitor-left "['<Super><Control><Shift>h']"
 gsettings set $wm move-to-monitor-right "['<Super><Control><Shift>l']"
 
-# Close window
+# Close window (Ubuntu Dock grabs Super+Q for its number overlay by default)
+gsettings set org.gnome.shell.extensions.dash-to-dock shortcut "[]"
 gsettings set $wm close "['<Super>q', '<Alt>F4']"
 
 # Lock screen
