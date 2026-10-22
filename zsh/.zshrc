@@ -6,13 +6,9 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-# Load completions
+# Load completions (full rebuild at most once a day)
 autoload -Uz compinit
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
+() { (( $# )) && compinit || compinit -C } ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
 
 # Init oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
