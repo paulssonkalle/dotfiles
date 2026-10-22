@@ -1,0 +1,8 @@
+**/Library/Caches/
+**/go/pkg/
+**/.vscode/extensions/
+**/Library/Application Support/
+**/.pyenv/
+**/.cache/
+**/.local/share/Trash/
+**/snap/
