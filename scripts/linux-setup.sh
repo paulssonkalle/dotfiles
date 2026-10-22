@@ -47,7 +47,6 @@ step "oh-my-posh"
 has oh-my-posh || curl -fsSL https://ohmyposh.dev/install.sh | bash -s -- -d "$BIN"
 
 step "Go tools"
-has sesh || go install github.com/joshmedeski/sesh/v2@latest
 if ! has worktree; then
   src="$HOME/dev/worktree"
   [ -d "$src" ] || git clone https://github.com/paulssonkalle/worktree "$src"
