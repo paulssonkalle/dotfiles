@@ -101,7 +101,7 @@ final_space = true
             '{{if eq .Code 0}}green{{end}}'
         ]
         background = 'transparent'
-        template = '❯'
+        template = '$'
 
 [transient_prompt]
     background = 'transparent'
@@ -109,9 +109,9 @@ final_space = true
         '{{if gt .Code 0}}red{{end}}',
         '{{if eq .Code 0}}green{{end}}'
     ]
-    template = '❯ '
+    template = '$ '
 
 [secondary_prompt]
     background = 'transparent'
     foreground = 'yellow'
-    template = '❯❯ '
+    template = '$$ '
