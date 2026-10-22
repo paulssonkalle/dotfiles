@@ -12,3 +12,8 @@
 [commit]
 	gpgsign = true
 
+[gpg]
+	program = /opt/homebrew/bin/gpg
+[safe]
+	directory = /Users/kalle/c/kube-konfig/feature-TC-2480-deployment-of-schoolsoft-widget-backend
+	directory = /Users/kalle/c/kube-konfig/feature-TC-2480-deployment-of-schoolsoft-widget-backend

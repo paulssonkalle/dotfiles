@@ -7,18 +7,19 @@ local windows = {
 	['2'] = "Ghostty",
 	['3'] = "Firefox",
 	['4'] = "TablePlus",
-	['5'] = "Zed",
+	['5'] = "Code",
 	['6'] = "Obsidian",
 	['7'] = "Yaak",
 	['8'] = "Calendar",
 	['9'] = "Spotify",
+	['z'] = "Zed"
 }
 
 -- if the app has to be launched by a different name
 -- than the one the windows are found by, this list
 -- will take precedence when opening the app.
 local windowLaunchNames = {
-	['9'] = "Spotify",
+--	['9'] = "Spotify",
 }
 
 local lastKey = ''

@@ -23,3 +23,5 @@ keybind = cmd+digit_6=text:\x01\x36
 keybind = cmd+digit_7=text:\x01\x37
 keybind = cmd+digit_8=text:\x01\x38
 keybind = cmd+digit_9=text:\x01\x39
+
+keybind = cmd+l=text:\x01\x41

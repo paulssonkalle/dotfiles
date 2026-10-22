@@ -1,42 +1,42 @@
 [[session]]
 name = "zshrc"
-path = "/Users/kalle/.zshrc"
-startup_command = "zed ."
+path = "/Users/kalle"
+startup_command = "nvim .zshrc"
 
 [[session]]
 name = "zprofile"
-path = "/Users/kalle/.zprofile"
-startup_command = "zed ."
+path = "/Users/kalle"
+startup_command = "nvim .zprofile"
 
 [[session]]
 name = "tmux conf"
-path = "/Users/kalle/.tmux.conf"
-startup_command = "zed .tmux.conf"
+path = "/Users/kalle/.config/tmux"
+startup_command = "nvim ."
 
 [[session]]
 name = "hammerspoon conf"
 path = "/Users/kalle/.hammerspoon"
-startup_command = "zed ."
+startup_command = "nvim ."
 
 [[session]]
 name = "ghostty conf"
 path = "/Users/kalle/.config/ghostty"
-startup_command = "zed ."
+startup_command = "nvim ."
 
 [[session]]
 name = "mise conf"
 path = "/Users/kalle/.config/mise"
-startup_command = "zed ."
+startup_command = "nvim ."
 
 [[session]]
 name = "nvim conf"
 path = "/Users/kalle/.config/nvim"
-startup_command = "zed ."
+startup_command = "nvim ."
 
 [[session]]
 name = "ohmyposh conf"
 path = "/Users/kalle/.config/ohmyposh"
-startup_command = "zed ."
+startup_command = "nvim ."
 
 [[session]]
 name = "opencode conf"
@@ -46,9 +46,30 @@ startup_command = "zed ."
 [[session]]
 name = "sesh conf"
 path = "/Users/kalle/.config/sesh"
-startup_command = "zed ."
+startup_command = "nvim ."
 
 [[session]]
 name = "worktree conf"
 path = "/Users/kalle/.config/worktree"
+startup_command = "nvim ."
+
+[[session]]
+name = "copilot conf"
+path = "/Users/kalle/.config/copilot"
 startup_command = "zed ."
+
+[[session]]
+name = "db tunnels"
+path = "/Users/kalle"
+
+[[wildcard]]
+pattern = "~/c/**"
+windows = [ "opencode", "misc" ]
+startup_command = "lg"
+
+[[window]]
+name = "opencode"
+startup_command = "opencode"
+
+[[window]]
+name = "misc"

@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/kalle/.docker/bin"
+# End of Docker Desktop section.
+
 fpath=($HOME/.zsh/completions $fpath)
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -38,3 +42,4 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export OPENCODE_EXPERIMENTAL_MARKDOWN=0
+export COPILOT_HOME="$HOME/.config/copilot"
