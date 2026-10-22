@@ -1,7 +1,7 @@
-skip_global_compinit=1
-
 fpath=($HOME/.zsh/completions $fpath)
-path=(~/.local/bin $path)
+
+# Remove duplicates from PATH
+typeset -U PATH
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -16,7 +16,7 @@ export FZF_DEFAULT_OPTS=" \
 --color=header:-1 \
 --color=border:-1 \
 --color=hl:2 \
---color=hl+:10 \
+--color=hl+:2 \
 --color=info:1 \
 --color=prompt:1 \
 --color=marker:2 \
@@ -27,3 +27,11 @@ export FZF_DEFAULT_OPTS=" \
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --ignore-file $HOME/.fd_ignore . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --hidden --exclude .git --ignore-file $HOME/.fd_ignore -t d . $HOME"
+
+export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/share/opencode/bin/jdtls/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
+export OPENCODE_EXPERIMENTAL_MARKDOWN=0
+export COPILOT_HOME="$HOME/.config/copilot"
