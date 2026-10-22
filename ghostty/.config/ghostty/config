@@ -5,7 +5,7 @@ font-style = Medium
 font-style-italic = Medium
 font-style-bold = Medium
 font-style-bold-italic = Medium
-font-size = 15
+font-size = 13
 adjust-cursor-thickness = 2
 window-padding-x = 5
 keybind = shift+enter=text:\x1b\r
