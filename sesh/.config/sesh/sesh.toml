@@ -1,0 +1,60 @@
+[[session]]
+name = "zshrc"
+path = "~"
+startup_command = "nvim .zshrc"
+
+[[session]]
+name = "zshenv"
+path = "~"
+startup_command = "nvim .zshenv"
+
+[[session]]
+name = "tmux conf"
+path = "~/.config/tmux"
+startup_command = "nvim ."
+
+[[session]]
+name = "ghostty conf"
+path = "~/.config/ghostty"
+startup_command = "nvim ."
+
+[[session]]
+name = "mise conf"
+path = "~/.config/mise"
+startup_command = "nvim ."
+
+[[session]]
+name = "nvim conf"
+path = "~/.config/nvim"
+startup_command = "nvim ."
+
+[[session]]
+name = "ohmyposh conf"
+path = "~/.config/ohmyposh"
+startup_command = "nvim ."
+
+[[session]]
+name = "sesh conf"
+path = "~/.config/sesh"
+startup_command = "nvim ."
+
+[[session]]
+name = "worktree conf"
+path = "~/.config/worktree"
+startup_command = "nvim ."
+
+[[session]]
+name = "db tunnels"
+path = "~"
+
+[[wildcard]]
+pattern = "~/c/**"
+windows = [ "opencode", "misc" ]
+startup_command = "lg"
+
+[[window]]
+name = "opencode"
+startup_command = "opencode"
+
+[[window]]
+name = "misc"
