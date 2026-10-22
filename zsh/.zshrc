@@ -24,6 +24,30 @@ _cached_eval mise mise activate zsh
 # Set up fzf key bindings and fuzzy completion
 _cached_eval fzf fzf --zsh
 
+# Generate completions for installed tools, refreshed when the binary changes
+# Usage: _cached_completion <cmd> [args...]
+_cached_completion() {
+  local out=$ZSH_CACHE_DIR/completions/_$1
+  local bin=${commands[$1]}
+  [[ -z $bin ]] && return
+  if [[ ! -s $out || $bin -nt $out ]]; then
+    mkdir -p ${out:h}
+    if "$@" >| $out 2>/dev/null; then
+      rm -f ${ZDOTDIR:-$HOME}/.zcompdump
+    else
+      rm -f $out
+    fi
+  fi
+}
+
+fpath=($ZSH_CACHE_DIR/completions $fpath)
+_cached_completion uv generate-shell-completion zsh
+_cached_completion mise completion zsh
+_cached_completion sesh completion zsh
+_cached_completion worktree completion zsh
+_cached_completion kubectl completion zsh
+_cached_completion docker completion zsh
+
 # Load completions (full rebuild at most once a day)
 autoload -Uz compinit
 () { (( $# )) && compinit || compinit -C } ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
