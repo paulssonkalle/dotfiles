@@ -3,6 +3,9 @@
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
+# mise first so tools it manages (fzf, etc.) are on PATH for everything below
+eval "$(mise activate zsh)"
+
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -68,7 +71,6 @@ source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(mise activate zsh)"
 
 lg() {
   if macos_is_dark; then
