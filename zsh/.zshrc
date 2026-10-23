@@ -67,6 +67,15 @@ alias kns='kubens'
 alias ktx='kubectx'
 alias printpath="echo $PATH | tr ':' '\n'"
 
+# Kubeconfig files directly in a directory, detected by content instead of name
+_kubeconfigs() {
+  local f
+  for f in $1/*(.N); do
+    [[ $f == *.old || $f == *.bak || $f == *~ ]] && continue
+    grep -q '^kind: *Config' $f 2>/dev/null && print -r -- $f
+  done
+}
+
 # Pick a kubeconfig for this shell only (kc - to unset)
 kc() {
   if [[ $1 == - ]]; then
@@ -74,9 +83,28 @@ kc() {
     return
   fi
   local f
-  f=$(print -l ~/.kube/*_config(.N) | fzf --prompt 'kubeconfig> ' --height 40% --select-1 --query "$*") || return
+  f=$(_kubeconfigs ~/.kube | fzf --prompt 'kubeconfig> ' --height 40% --select-1 --query "$*") || return
   export KUBECONFIG=$f
 }
+
+# Production kubeconfigs live in ~/.kube/prod and need typed confirmation
+kprod() {
+  local f answer
+  f=$(_kubeconfigs ~/.kube/prod | fzf --prompt 'PRODUCTION> ' --height 40% --query "$*") || return
+  local name=${f:t}
+  print -P "%B%F{red}Switching to PRODUCTION: $name%f%b"
+  read "answer?Type '$name' to confirm: "
+  if [[ $answer != $name ]]; then
+    echo "Aborted."
+    return 1
+  fi
+  export KUBECONFIG=$f
+}
+
+# Keep kprod out of history so Ctrl+R can't find it
+autoload -Uz add-zsh-hook
+_skip_kprod_history() { [[ ! $1 =~ '^[[:space:]]*kprod' ]] }
+add-zsh-hook zshaddhistory _skip_kprod_history
 
 source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
