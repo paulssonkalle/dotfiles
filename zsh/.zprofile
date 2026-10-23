@@ -11,7 +11,6 @@ typeset -U PATH
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-export KUBECONFIG="$HOME/.kube/backup_config:$HOME/.kube/staging_config:$HOME/.kube/dev_config:$HOME/.kube/ai_config"
 export FZF_DEFAULT_OPTS=" \
 --layout reverse \
 --border \
