@@ -3,3 +3,4 @@
 **/.vscode/extensions/
 **/Library/Application Support/
 **/.pyenv/
+**/.cache/
