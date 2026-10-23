@@ -101,6 +101,17 @@ alias kns='kubens'
 alias ktx='kubectx'
 alias printpath="echo $PATH | tr ':' '\n'"
 
+# Pick a kubeconfig for this shell only (kc - to unset)
+kc() {
+  if [[ $1 == - ]]; then
+    unset KUBECONFIG
+    return
+  fi
+  local f
+  f=$(print -l ~/.kube/*_config(.N) | fzf --prompt 'kubeconfig> ' --height 40% --select-1 --query "$*") || return
+  export KUBECONFIG=$f
+}
+
 source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

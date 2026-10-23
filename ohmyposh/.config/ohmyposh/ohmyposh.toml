@@ -43,7 +43,7 @@ final_space = true
     [[blocks.segments]]
         type = 'kubectl'
         style = 'plain'
-        template = " <blue>󱃾 </><red>{{.Context}}</>{{if .Namespace}}<darkGray>::</><blue>{{.Namespace}}{{end}}</> "
+        template = ' <blue>󱃾 </>{{ if or (regexMatch "(?i)prod" .Context) (regexMatch "(?i)prod" .Env.KUBECONFIG) }}<b><red>{{.Context}}</></b>{{ else }}<green>{{.Context}}</>{{ end }}{{if .Namespace}}<darkGray>::</><blue>{{.Namespace}}{{end}}</> '
 
 [[blocks]]
     type = 'rprompt'
