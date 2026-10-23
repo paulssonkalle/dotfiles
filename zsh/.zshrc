@@ -3,22 +3,57 @@
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
-# mise first so tools it manages (fzf, etc.) are on PATH for everything below
-eval "$(mise activate zsh)"
+ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+
+# Source the output of an init command, cached until the binary changes
+# Usage: _cached_eval <name> <cmd> [args...]
+_cached_eval() {
+  local cache=$ZSH_CACHE_DIR/$1.zsh; shift
+  local bin=${commands[$1]}
+  [[ -z $bin ]] && return
+  if [[ ! -s $cache || $bin -nt $cache ]]; then
+    mkdir -p ${cache:h}
+    "$@" >| $cache
+  fi
+  source $cache
+}
+
+# mise first so tools it manages are on PATH for everything below
+_cached_eval mise mise activate zsh
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+_cached_eval fzf fzf --zsh
+
+# Generate completions for installed tools, refreshed when the binary changes
+# Usage: _cached_completion <cmd> [args...]
+_cached_completion() {
+  local out=$ZSH_CACHE_DIR/completions/_$1
+  local bin=${commands[$1]}
+  [[ -z $bin ]] && return
+  if [[ ! -s $out || $bin -nt $out ]]; then
+    mkdir -p ${out:h}
+    if "$@" >| $out 2>/dev/null; then
+      rm -f ${ZDOTDIR:-$HOME}/.zcompdump
+    else
+      rm -f $out
+    fi
+  fi
+}
+
+fpath=($ZSH_CACHE_DIR/completions $fpath)
+_cached_completion uv generate-shell-completion zsh
+_cached_completion mise completion zsh
+_cached_completion sesh completion zsh
+_cached_completion worktree completion zsh
+_cached_completion kubectl completion zsh
+_cached_completion docker completion zsh
 
 # source lux
 source $HOME/dev/zsh-lux/zsh-lux.plugin.zsh
 
-# Load completions
+# Load completions (full rebuild at most once a day)
 autoload -Uz compinit
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
+() { (( $# )) && compinit || compinit -C } ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
 
 # Init oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/ohmyposh.toml)"
@@ -38,7 +73,7 @@ autoload -U select-word-style
 select-word-style bash
 
 # History
-HISTSIZE=5000
+HISTSIZE=100000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
@@ -109,7 +144,17 @@ add-zsh-hook zshaddhistory _skip_kprod_history
 source ~/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-eval "$(zoxide init --cmd cd zsh)"
+_cached_eval zoxide zoxide init --cmd cd zsh
+
+# Update plugins in the background once a week
+() {
+  local stamp=$ZSH_CACHE_DIR/plugins-updated
+  local script=$HOME/.dotfiles/scripts/update-plugins.sh
+  local fresh=($stamp(N.md-7))
+  (( $#fresh )) || [[ ! -x $script ]] && return
+  mkdir -p $ZSH_CACHE_DIR && touch $stamp
+  $script >| $ZSH_CACHE_DIR/plugins-update.log 2>&1 &!
+}
 
 lg() {
   if macos_is_dark; then
