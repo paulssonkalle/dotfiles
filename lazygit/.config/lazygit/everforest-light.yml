@@ -1,6 +1,0 @@
-gui:
-  theme:
-    selectedLineBgColor:
-      - '#BDC3AF'
-    authorColors:
-      '*': yellow

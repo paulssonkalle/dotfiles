@@ -1,2 +1,64 @@
 git:
   overrideGpg: true
+gui:
+  # Lazygit detects the terminal background and switches live between these
+  # Everforest dark soft (official palette)
+  darkTheme:
+    activeBorderColor:
+      - '#a7c080'
+      - bold
+    inactiveBorderColor:
+      - '#7a8478'
+    searchingActiveBorderColor:
+      - '#83c092'
+      - bold
+    optionsTextColor:
+      - '#7fbbb3'
+    selectedLineBgColor:
+      - '#5c3f4f'
+    inactiveViewSelectedLineBgColor:
+      - '#434f55'
+    cherryPickedCommitFgColor:
+      - '#d3c6aa'
+    cherryPickedCommitBgColor:
+      - '#3f5865'
+    markedBaseCommitFgColor:
+      - '#d3c6aa'
+    markedBaseCommitBgColor:
+      - '#55544a'
+    unstagedChangesColor:
+      - '#e67e80'
+    defaultFgColor:
+      - '#d3c6aa'
+    authorColors:
+      '*': '#d699b6'
+  # Everforest light hard (official palette)
+  lightTheme:
+    activeBorderColor:
+      - '#8da101'
+      - bold
+    inactiveBorderColor:
+      - '#a6b0a0'
+    searchingActiveBorderColor:
+      - '#35a77c'
+      - bold
+    optionsTextColor:
+      - '#3a94c5'
+    selectedLineBgColor:
+      - '#f0f2d4'
+    inactiveViewSelectedLineBgColor:
+      - '#edeada'
+    cherryPickedCommitFgColor:
+      - '#5c6a72'
+    cherryPickedCommitBgColor:
+      - '#ecf5ed'
+    markedBaseCommitFgColor:
+      - '#5c6a72'
+    markedBaseCommitBgColor:
+      - '#fef2d5'
+    unstagedChangesColor:
+      - '#f85552'
+    defaultFgColor:
+      - '#5c6a72'
+    authorColors:
+      '*': '#dfa000'

@@ -155,11 +155,7 @@ _cached_eval zoxide zoxide init --cmd cd zsh
   $script >| $ZSH_CACHE_DIR/plugins-update.log 2>&1 &!
 }
 
-lg() {
-  local theme=light
-  [[ "$(gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null)" == "'prefer-dark'" ]] && theme=dark
-  command lazygit --use-config-file="$HOME/.config/lazygit/config.yml,$HOME/.config/lazygit/everforest-$theme.yml"
-}
+alias lg=lazygit
 
 if [ -z "$TMUX" ]; then
     tmux attach || exec tmux new-session
