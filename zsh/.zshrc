@@ -156,13 +156,7 @@ _cached_eval zoxide zoxide init --cmd cd zsh
   $script >| $ZSH_CACHE_DIR/plugins-update.log 2>&1 &!
 }
 
-lg() {
-  if macos_is_dark; then
-      command lazygit --use-config-file="/Users/kalle/.config/lazygit/config.yml,/Users/kalle/.config/lazygit/everforest-dark.yml"
-  else
-      command lazygit --use-config-file="/Users/kalle/.config/lazygit/config.yml,/Users/kalle/.config/lazygit/everforest-light.yml"
-  fi
-}
+alias lg=lazygit
 
 if [ -z "$TMUX" ]; then
     tmux attach || exec tmux new-session
