@@ -36,10 +36,16 @@ require("lazy").setup({
     spec = {
 --        { "catppuccin/nvim",           name = "catppuccin",                              priority = 1000 },
       { "neanias/everforest-nvim", version = false, lazy = false, priority = 1000, config = function()
-        require("everforest").setup({
-          background = "hard",
-          italics = true,
-        })
+        -- Match Ghostty: soft in dark mode, hard in light mode
+        local function apply()
+          require("everforest").setup({
+            background = vim.o.background == "dark" and "soft" or "hard",
+            italics = true,
+          })
+          vim.cmd.colorscheme "everforest"
+        end
+        apply()
+        vim.api.nvim_create_autocmd("OptionSet", { pattern = "background", callback = apply })
     end,
     },
         { "nvim-lualine/lualine.nvim", dependencies = { 'nvim-tree/nvim-web-devicons' }, opts = {} },
