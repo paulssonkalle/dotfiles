@@ -48,6 +48,9 @@ _cached_completion worktree completion zsh
 _cached_completion kubectl completion zsh
 _cached_completion docker completion zsh
 
+# source lux (only if checked out locally)
+[[ -f $HOME/dev/zsh-lux/zsh-lux.plugin.zsh ]] && source $HOME/dev/zsh-lux/zsh-lux.plugin.zsh
+
 # Load completions (full rebuild at most once a day)
 autoload -Uz compinit
 () { (( $# )) && compinit || compinit -C } ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
