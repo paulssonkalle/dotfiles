@@ -20,17 +20,17 @@ gsettings set $shell switch-to-application-8 "[]"
 gsettings set $shell switch-to-application-9 "[]"
 
 # Window tiling
-gsettings set $mutter toggle-tiled-left "['<Super><Control>h']"
-gsettings set $mutter toggle-tiled-right "['<Super><Control>l']"
-gsettings set $wm toggle-maximized "['<Super><Control>m']"
+gsettings set $mutter toggle-tiled-left "['<Alt><Control>h']"
+gsettings set $mutter toggle-tiled-right "['<Alt><Control>l']"
+gsettings set $wm toggle-maximized "['<Alt><Control>m']"
 
 # Move window between monitors
-gsettings set $wm move-to-monitor-left "['<Super><Control><Shift>h']"
-gsettings set $wm move-to-monitor-right "['<Super><Control><Shift>l']"
+gsettings set $wm move-to-monitor-left "['<Alt><Control><Shift>h']"
+gsettings set $wm move-to-monitor-right "['<Alt><Control><Shift>l']"
 
 # Close window (Ubuntu Dock grabs Super+Q for its number overlay by default)
 gsettings set org.gnome.shell.extensions.dash-to-dock shortcut "[]"
-gsettings set $wm close "['<Super>q', '<Alt>F4']"
+gsettings set $wm close "['<Alt>q', '<Alt>F4']"
 
 # Lock screen
-gsettings set $media screensaver "['<Super><Control>q']"
+gsettings set $media screensaver "['<Alt><Control>q']"
