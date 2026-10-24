@@ -14,6 +14,8 @@ spring-boot = "4.0.2"
 usage = "latest"
 uv = "0.10.2"
 yarn = "4.12.0"
+"asdf:mise-plugins/mise-tmux" = "3.8"
+opencode = { version = "latest", allow_builds = ["@opencode/cli"] }
 
 [settings]
 python.uv_venv_auto = true
