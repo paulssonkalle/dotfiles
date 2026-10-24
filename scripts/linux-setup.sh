@@ -13,7 +13,7 @@ has() { command -v "$1" >/dev/null 2>&1; }
 step "apt packages"
 sudo apt update
 sudo apt install -y \
-  zsh tmux stow git curl unzip \
+  zsh stow git curl unzip \
   fd-find zoxide lazygit zsh-syntax-highlighting wl-clipboard \
   gnome-shell-extension-manager \
   build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev \
