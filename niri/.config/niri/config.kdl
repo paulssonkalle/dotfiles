@@ -644,7 +644,6 @@ include "dms/wpblur.kdl"
 // dms/colors.kdl is left out on purpose, everforest.kdl sets the colours
 include "everforest.kdl"
 
-// Own overrides, after the includes so they win over the DMS files.
-layout {
-    gaps 16
-}
+// Own overrides, last so they win over the DMS files. In a separate file because
+// niri does not allow two layout blocks in the same file.
+include "overrides.kdl"
