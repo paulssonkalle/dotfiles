@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# Keep GTK and Qt on the Everforest variant that matches the system appearance.
+# Dark uses soft contrast and light uses hard, like Ghostty, Neovim, tmux and lazygit.
+# Started from niri's spawn-at-startup. Run with --once to apply and exit.
+set -u
+
+DARK_GTK=${EVERFOREST_DARK_GTK:-Everforest-Green-Dark-Soft}
+LIGHT_GTK=${EVERFOREST_LIGHT_GTK:-Everforest-Green-Light}
+
+STATE="$HOME/.local/state/everforest"
+QT_CONF="$HOME/.config/qt6ct/qt6ct.conf"
+QT_COLORS="$HOME/.config/qt6ct/colors"
+GTK4="$HOME/.config/gtk-4.0"
+
+mkdir -p "$STATE" "$GTK4" "$(dirname "$QT_CONF")"
+
+exec 9>"$STATE/follow.lock"
+if [ "${1:-}" != --once ] && ! flock -n 9; then
+  echo "everforest-follow is already running" >&2
+  exit 0
+fi
+
+set_qt_key() {
+  local key=$1 value=$2
+  [ -f "$QT_CONF" ] || printf '[Appearance]\n' >"$QT_CONF"
+  if grep -q "^$key=" "$QT_CONF"; then
+    sed -i "s|^$key=.*|$key=$value|" "$QT_CONF"
+  elif grep -q '^\[Appearance\]' "$QT_CONF"; then
+    sed -i "/^\[Appearance\]/a $key=$value" "$QT_CONF"
+  else
+    printf '[Appearance]\n%s=%s\n' "$key" "$value" >>"$QT_CONF"
+  fi
+}
+
+link_gtk4() {
+  local src="$HOME/.themes/$1/gtk-4.0" name
+  [ -d "$src" ] || { echo "missing $src" >&2; return; }
+  for name in gtk.css gtk-dark.css assets; do
+    if [ -e "$GTK4/$name" ] && [ ! -L "$GTK4/$name" ]; then
+      echo "not replacing $GTK4/$name, it is not a symlink" >&2
+      continue
+    fi
+    ln -sfnT "$src/$name" "$GTK4/$name"
+  done
+}
+
+apply() {
+  local scheme gtk qt
+  scheme=$(gsettings get org.gnome.desktop.interface color-scheme)
+  if [ "$scheme" = "'prefer-light'" ] || [ "$scheme" = "'default'" ]; then
+    gtk=$LIGHT_GTK qt=everforest-light-hard
+  else
+    gtk=$DARK_GTK qt=everforest-dark-soft
+  fi
+
+  gsettings set org.gnome.desktop.interface gtk-theme "$gtk"
+  link_gtk4 "$gtk"
+  ln -sfn "$QT_COLORS/$qt.conf" "$STATE/qt6ct-colors.conf"
+}
+
+set_qt_key style Fusion
+set_qt_key custom_palette true
+set_qt_key color_scheme_path "$STATE/qt6ct-colors.conf"
+
+apply
+[ "${1:-}" = --once ] && exit 0
+
+gsettings monitor org.gnome.desktop.interface color-scheme | while read -r _; do
+  apply
+done
