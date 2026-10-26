@@ -56,6 +56,18 @@ apply() {
   gsettings set org.gnome.desktop.interface gtk-theme "$gtk"
   link_gtk4 "$gtk"
   ln -sfn "$QT_COLORS/$qt.conf" "$STATE/qt6ct-colors.conf"
+  apply_spotify "Everforest-${qt#everforest-}"
+}
+
+# Spicetify bakes the colours in, so switching means re-applying, which restarts
+# Spotify if it is running. Skipped when the scheme is already active.
+apply_spotify() {
+  local spicetify="$HOME/.spicetify/spicetify" scheme=$1
+  [ -x "$spicetify" ] || return 0
+  [ "$("$spicetify" config color_scheme 2>/dev/null)" = "$scheme" ] && return 0
+  "$spicetify" config color_scheme "$scheme" >/dev/null &&
+    "$spicetify" apply >/dev/null 2>&1 ||
+    echo "spicetify apply failed, run it in a terminal to see why" >&2
 }
 
 set_qt_key style Fusion

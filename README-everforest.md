@@ -11,6 +11,7 @@ contrast, light uses hard**. You switch light/dark in DMS and the rest follows.
 | Qt | `everforest-follow` switches the qt6ct colour scheme (Fusion style) |
 | Ghostty, Neovim, tmux, lazygit | Already set up, `dark:`/`light:` themes |
 | Firefox, Obsidian | Follow the portal `color-scheme`, manual setup below |
+| Spotify | Spicetify + Comfy, `everforest-follow` switches the colour scheme and re-applies (restarts Spotify if open) |
 
 ## 1. Stow
 
@@ -110,7 +111,33 @@ So niri picks up `QT_QPA_PLATFORMTHEME` and starts `everforest-follow`.
 - Theme options (Style Settings plugin, if the theme exposes it): pick soft for
   dark and hard for light.
 
-## 8. Check it works
+## 8. Spotify (Spicetify + Comfy)
+
+Needs the Spotify deb (`spotify-client`), not the snap. Start Spotify once and
+log in **before** running `everforest-install.sh`, so its prefs file exists.
+
+The install script:
+- downloads Spicetify into `~/.spicetify` and links it to `~/.local/bin`
+  (the official installer would append to `~/.zshrc`, which is in this repo),
+- makes `/usr/share/spotify` writable (needed for the deb),
+- clones Comfy into Spicetify's `Themes` folder and appends the
+  `Everforest-dark-soft` and `Everforest-light-hard` schemes from
+  `scripts/everforest-spicetify.ini` to Comfy's `color.ini`,
+- applies it.
+
+When you switch light/dark, `everforest-follow` runs `spicetify apply`. If
+Spotify is open it restarts and playback stops.
+
+After a Spotify update the theme is gone. Run:
+
+```sh
+spicetify backup apply
+```
+
+If you update Comfy (re-clone it), run `everforest-install.sh` again so the
+Everforest schemes are appended again.
+
+## 9. Check it works
 
 Toggle light/dark in DMS and check each of these switches:
 
@@ -121,6 +148,7 @@ Toggle light/dark in DMS and check each of these switches:
 - [ ] A GTK 3 app (for example `gnome-disks` or `gedit`)
 - [ ] A GTK 4 app (Nautilus). GTK 4 apps need a restart after a switch.
 - [ ] A Qt app. Qt apps also need a restart.
+- [ ] Spotify (restarts on switch)
 
 ## Troubleshooting
 
