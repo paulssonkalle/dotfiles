@@ -1,5 +1,4 @@
-// Everforest colours for niri. Include from config.kdl with:
-//   include "everforest.kdl"
+// Everforest colours for niri, included last from config.kdl.
 // niri has a single set of colours, so these are chosen to read well on both
 // the dark soft and light hard backgrounds.
 

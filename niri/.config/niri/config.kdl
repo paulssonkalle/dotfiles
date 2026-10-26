@@ -1,0 +1,11 @@
+// DMS generates the files in dms/. DMS itself is started by the systemd user service.
+include "dms/outputs.kdl"
+include "dms/input.kdl"
+include "dms/cursor.kdl"
+include "dms/layout.kdl"
+include "dms/windowrules.kdl"
+include "dms/binds.kdl"
+include "dms/alttab.kdl"
+include "dms/wpblur.kdl"
+// dms/colors.kdl is left out on purpose, everforest.kdl sets the colours
+include "everforest.kdl"

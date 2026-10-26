@@ -5,42 +5,43 @@ contrast, light uses hard**. You switch light/dark in DMS and the rest follows.
 
 | Part | How it follows |
 | --- | --- |
-| DMS (Dux Shell) | Custom theme `dms/.config/DankMaterialShell/themes/everforest.json` |
+| DMS (Dux Shell) | Custom theme `dms/.config/dms/themes/everforest.json` |
 | niri | `niri/.config/niri/everforest.kdl` (colours work on both modes) |
 | GTK 3 / GTK 4 | `everforest-follow` switches `gtk-theme` and the `~/.config/gtk-4.0` links |
 | Qt | `everforest-follow` switches the qt6ct colour scheme (Fusion style) |
 | Ghostty, Neovim, tmux, lazygit | Already set up, `dark:`/`light:` themes |
 | Firefox, Obsidian | Follow the portal `color-scheme`, manual setup below |
 
-## 1. Install packages and stow
+## 1. Stow
 
-Create the niri and DMS config folders first, so stow links files into them
-instead of linking the whole folder (otherwise niri and DMS would write their
-own files into this repo):
+`~/.config/niri` and `~/.config/dms` must already exist as real folders (niri
+and DMS create them on first start), so stow links files into them instead of
+linking the whole folder. Move niri's generated `config.kdl` out of the way
+first, the one from the dotfiles replaces it:
 
 ```sh
-mkdir -p ~/.config/niri ~/.config/DankMaterialShell ~/.config/qt6ct ~/.local/bin
+mkdir -p ~/.config/niri ~/.config/dms ~/.config/qt6ct ~/.local/bin
+mv ~/.config/niri/config.kdl ~/.config/niri/config.kdl.default
 cd ~/.dotfiles
 stow --no-folding dms niri qt everforest
 ```
 
-If you have no `~/.config/niri/config.kdl` yet, start niri once (it writes the
-default config) or copy it from `/usr/share/doc/niri/default-config.kdl`.
+## 2. niri config
 
-## 2. Include the niri colours
+`niri/.config/niri/config.kdl` is minimal. It includes the files DMS generates
+in `~/.config/niri/dms/` (binds, input, layout, outputs and so on) and then
+`everforest.kdl` last. `dms/colors.kdl` is left out on purpose, so DMS does not
+override the Everforest colours. Put your own overrides at the bottom of
+`config.kdl`.
 
-Add near the top of `~/.config/niri/config.kdl`:
-
-```kdl
-include "everforest.kdl"
-```
+DMS is started by its systemd user service (`systemctl --user is-enabled dms`),
+so there is no `spawn-at-startup` for it.
 
 `everforest.kdl` also sets `QT_QPA_PLATFORMTHEME=qt6ct` and starts
-`everforest-follow`. If your `config.kdl` already has a `layout { focus-ring ... }`
-block, remove the colour settings there; the later definition wins, so put the
-`include` after your own `layout` block if you want to keep both.
+`everforest-follow`.
 
-Requires niri 25.11 or later for `include`. Check with `niri --version`.
+If DMS adds a new file to `~/.config/niri/dms/` after an update, add an
+`include` line for it in `config.kdl`. Check with `ls ~/.config/niri/dms`.
 
 ## 3. Install the GTK theme and icons
 
@@ -73,11 +74,14 @@ If you have real files in `~/.config/gtk-4.0` (`gtk.css`, `gtk-dark.css`,
 
 1. First try the registry theme: **Settings → Theme & Colors**, pick Everforest.
    Use **Soft** in dark mode and **Hard** in light mode to match the terminal.
-2. Then switch to the custom theme. The `config.d/theme.json` override selects it.
-   If DMS does not expand `~` in `customThemeFile`, change it to the absolute path
-   `/home/<you>/.config/DankMaterialShell/themes/everforest.json`.
+2. Then switch to the custom theme: **Settings → Theme & Colors → Custom**, and
+   choose `~/.config/dms/themes/everforest.json`. DMS saves the choice in its own
+   `~/.config/dms/settings.json`, which is not in the dotfiles.
 3. Turn **off** matugen app theming for GTK, Qt and Firefox (Settings → Theme &
    Colors → application theming), so it does not override these themes.
+   DMS has already written `~/.config/dms/firefox.css`. If Firefox loads it
+   (check `chrome/userChrome.css` in your Firefox profile for a link or
+   `@import` to it), remove that.
 4. Make sure DMS sets the system colour scheme when you toggle light/dark. Check:
    ```sh
    gsettings get org.gnome.desktop.interface color-scheme
