@@ -2,4 +2,5 @@ layout {
     gaps 16
 }
 
+// Ask apps to drop their own title bars, niri's focus ring shows the active window.
 prefer-no-csd
