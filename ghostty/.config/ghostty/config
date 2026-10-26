@@ -1,9 +1,11 @@
 theme = dark:everforest-dark-soft.ghostty,light:everforest-light-hard.ghostty
 palette-generate = true
 font-family = Zed Mono Medium Extended
-font-size = 13
+font-size = 12
 adjust-cursor-thickness = 2
 window-padding-x = 5
+window-padding-y = 5
+window-padding-balance = true
 keybind = shift+enter=text:\x1b\r
 keybind = alt+k=text:\x01\x54
 keybind = alt+t=text:\x01\x63
