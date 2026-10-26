@@ -643,3 +643,8 @@ include "dms/alttab.kdl"
 include "dms/wpblur.kdl"
 // dms/colors.kdl is left out on purpose, everforest.kdl sets the colours
 include "everforest.kdl"
+
+// Own overrides, after the includes so they win over the DMS files.
+layout {
+    gaps 16
+}
