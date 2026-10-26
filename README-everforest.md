@@ -28,11 +28,16 @@ stow --no-folding dms niri qt everforest
 
 ## 2. niri config
 
-`niri/.config/niri/config.kdl` is minimal. It includes the files DMS generates
-in `~/.config/niri/dms/` (binds, input, layout, outputs and so on) and then
-`everforest.kdl` last. `dms/colors.kdl` is left out on purpose, so DMS does not
-override the Everforest colours. Put your own overrides at the bottom of
-`config.kdl`.
+`niri/.config/niri/config.kdl` is niri's default config (v26.04) with two
+changes: waybar is not started (DMS has its own bar) and `Mod+D` opens the DMS
+launcher instead of fuzzel. At the end it includes the files DMS generates in
+`~/.config/niri/dms/` and then `everforest.kdl`, so those override the defaults.
+`dms/colors.kdl` is left out on purpose, so DMS does not override the Everforest
+colours. Put your own changes in `config.kdl`.
+
+If `niri validate` complains after a niri upgrade, compare with the new
+default config: `niri --version`, then
+`https://github.com/niri-wm/niri/blob/<version>/resources/default-config.kdl`.
 
 DMS is started by its systemd user service (`systemctl --user is-enabled dms`),
 so there is no `spawn-at-startup` for it.
