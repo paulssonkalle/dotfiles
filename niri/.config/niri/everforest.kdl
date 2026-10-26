@@ -31,6 +31,7 @@ layout {
 
 environment {
     QT_QPA_PLATFORMTHEME "qt6ct"
+    TERMINAL "ghostty"
 }
 
 spawn-at-startup "sh" "-c" "exec $HOME/.local/bin/everforest-follow"
