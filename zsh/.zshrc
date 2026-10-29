@@ -19,7 +19,7 @@ _cached_eval() {
 }
 
 # mise first so tools it manages are on PATH for everything below
-_cached_eval mise mise activate zsh
+eval "$(mise activate zsh)"
 
 # Set up fzf key bindings and fuzzy completion
 _cached_eval fzf fzf --zsh
